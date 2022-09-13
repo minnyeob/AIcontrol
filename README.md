@@ -1,4 +1,4 @@
-https://dillinger.io/
+
 
 - 작성자 : 김민엽
 - 학교   : 한국폴리텍대학 창원캠퍼스
@@ -6,14 +6,17 @@ https://dillinger.io/
 
 - 휴대폰        : 010-5298-4040
 - 이메일        : aksel741@naver.com
-- instagram    : [![instagram](AIcontrol/Instagram_Glyph_Gradient copy(white).jpg)](https://www.instagram.com/yeob_4040)
-- facebook     : [![facebook](AIcontrol/f_logo_RGB-Blue_58.png)](https://www.facebook.com/minyoeb)
+- instagram    : [![instagram](https://ifh.cc/g/K3kPv4.jpg).jpg)](https://www.instagram.com/yeob_4040)
+
+- facebook     : [![facebook](https://ifh.cc/g/z5rz9K.png)](https://www.facebook.com/minyoeb)
 
 개요
 
 AI 제어실습 수업내용정리 및 프로젝트
 
 ####
+참고 링크 https://dillinger.io/
+
 
 수업내용
 

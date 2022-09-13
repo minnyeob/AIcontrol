@@ -6,11 +6,8 @@ https://dillinger.io/
 
 - 휴대폰        : 010-5298-4040
 - 이메일        : aksel741@naver.com
-- instagram    : 
-- facebook     :
-[![instagram](https://cldup.com/dTxpPi9lDf.thumb.png)](https://www.instagram.com/yeob_4040)
-
-https://gist.github.com/ihoneymon/653be052a0727ad59601
+- instagram    : [![instagram](AIcontrol/Instagram_Glyph_Gradient copy(white).jpg)](https://www.instagram.com/yeob_4040)
+- facebook     : [![facebook](AIcontrol/f_logo_RGB-Blue_58.png)](https://www.facebook.com/minyoeb)
 
 개요
 

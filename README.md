@@ -1,26 +1,42 @@
+# 민엽의 자기소개
+===================================
+
+### - 작성자 : 김민엽
+### - 학교   : 한국폴리텍대학 창원캠퍼스
+### - 학과   : 스마트팩토리과
+
+### - 휴대폰        : 010-5298-4040
+### - 이메일        : aksel741@naver.com
+### - Instagram     : [<img src = "https://ifh.cc/g/K3kPv4.jpg" width="25" height = "25">](https://www.instagram.com/yeob_4040)
+### - facebook     : [<img src = "https://ifh.cc/g/z5rz9K.png" width="25" height = "25">](https://www.facebook.com/minyoeb)
+
+## ** 자기소개 **
+스마트팩토리학과 재학중인 22살 학생입니다. 취미로 홈카페, 게임, 운동합니다.
+PLC, 마이크로프로세서, 전기 전공입니다!
+
+## ** 학력 **
+
+2017~2019 울산에너지고등학교 (전기에너지과)
+2022 ~    한국폴리텍대학 창원캠퍼스 (스마트팩토리과)
+
+## ** 수상경력 **
+
+2018 울산지방기능경기대회 전기기기직종 (은메달)
+2019 울산지방기능경기대회 전기기기직종 (은메달)
+2019 전국기능경기대회     전기기기직종 (장려상)
+
+## ** 자격증 **
+
+전기기능사
+생산자동화기능사
+전기산업기사(필기)
+산업안전산업기사(필기)
 
 
-- 작성자 : 김민엽
-- 학교   : 한국폴리텍대학 창원캠퍼스
-- 학과   : 스마트팩토리과
-
-- 휴대폰        : 010-5298-4040
-- 이메일        : aksel741@naver.com
-- Instagram     : [<img src = "https://ifh.cc/g/K3kPv4.jpg" width="50" height = "50">](https://www.instagram.com/yeob_4040)
-- facebook     : [<img src = "https://ifh.cc/g/z5rz9K.png" width="50" height = "50">](https://www.facebook.com/minyoeb)
-
-- instagram    : [![instagram](https://ifh.cc/g/K3kPv4.jpg){: width="5%" height="5%"}](https://www.instagram.com/yeob_4040)
-개요
-
-
-
-AI 제어실습 수업내용정리 및 프로젝트
-
-####
 참고 링크 https://dillinger.io/
 
 
-수업내용
+## 수업내용 및 프로젝트
 
 2022.09.06 수업내용
 -------------------
@@ -28,6 +44,14 @@ VIM 사용방법
 GITHUB 사용방법
 [HOW_TO_USE_VIM](https://github.com/minnyeob/vshome/blob/master/class220906.py)
 
+2022.09.13 수업내용
 --------------------
+마크다운 사용법
 
-프로젝트
+
+
+
+
+
+라이센스
+MIT라이센스

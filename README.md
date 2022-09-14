@@ -8,7 +8,7 @@
 - 이메일        : aksel741@naver.com
 - instagram    : [![instagram](https://github.com/minnyeob/AIcontrol/commit/251fd8d3e99820c184eabb3878c07f42925774ce#diff-fb568d6574d210359984214f378812ec6e2daa104b5cb362de5ed34492e5c7fb)](https://www.instagram.com/yeob_4040)
 
-- [![facebook](https://www.facebook.com/minyoeb)]
+- [facebook](https://www.facebook.com/minyoeb)
 
 개요
 

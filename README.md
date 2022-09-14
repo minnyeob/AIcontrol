@@ -6,8 +6,8 @@
 
 - 휴대폰        : 010-5298-4040
 - 이메일        : aksel741@naver.com
-- Instagram     : <img src = "https://ifh.cc/g/K3kPv4.jpg" width="50" height = "50">(https://www.instagram.com/yeob_4040)
-- facebook     : <img src = "https://ifh.cc/g/z5rz9K.png" width="50" height = "50">(https://www.facebook.com/minyoeb)
+- Instagram     : [<img src = "https://ifh.cc/g/K3kPv4.jpg" width="50" height = "50">](https://www.instagram.com/yeob_4040)
+- facebook     : [<img src = "https://ifh.cc/g/z5rz9K.png" width="50" height = "50">](https://www.facebook.com/minyoeb)
 
 - instagram    : [![instagram](https://ifh.cc/g/K3kPv4.jpg){: width="5%" height="5%"}](https://www.instagram.com/yeob_4040)
 개요

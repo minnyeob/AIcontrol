@@ -43,7 +43,7 @@
 
 ### 수업내용 및 프로젝트 :file_folder: 
 ---------------------------------------
-깃허브 프로젝트 업로드, 커밋 수
+깃허브 프로젝트 업로드, 커밋 수     
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&theme=dark&show_icons=true)
 >--------------------
 

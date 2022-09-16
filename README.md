@@ -43,20 +43,19 @@
 
 ### 수업내용 및 프로젝트 :file_folder: 
 ---------------------------------------
+깃허브 프로젝트 업로드, 커밋 수
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&theme=dark&show_icons=true)
 >--------------------
 
->#### 2022.09.06 수업내용
->-------------------
->>VIM 사용방법
->>GITHUB 사용방법  
->>[HOW_TO_USE_VIM](https://github.com/minnyeob/vshome/blob/master/class220906.py)
->--------------------
+#### 2022.09.06 수업내용
+>VIM 사용방법
+>GITHUB 사용방법  
+>[HOW_TO_USE_VIM](https://github.com/minnyeob/vshome/blob/master/class220906.py)
+--------------------
 
->#### 2022.09.13 수업내용
->--------------------
->>마크다운 사용법
->--------------------
+#### 2022.09.13 수업내용
+>마크다운 사용법
+--------------------
 
 
 

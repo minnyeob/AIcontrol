@@ -66,7 +66,7 @@
 | DATE | 수업내용 | 과제 (:ballot_box_with_check: , :x:) | 과제내용 |
 |------|-------------------------|------|---------|
 |220906|vim사용법, github 사용법  | :ballot_box_with_check: | [HOW_TO_USE_VIM](https://github.com/minnyeob/vshome/blob/master/class220906.py)
-|220913|마카다운 사용법 | :ballot_box_with_check: | 마크다운으로 자기소개작성 |     
+|220913|마크다운 사용법 | :ballot_box_with_check: | 마크다운으로 자기소개작성 |     
            
         
                    

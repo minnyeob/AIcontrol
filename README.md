@@ -4,8 +4,9 @@
 --------------------
 
 
-## 민엽의 자기소개
-===================================
+## 민엽의 자기소개  
+
+------------------------------------------
 
 #### - 작성자 : 김민엽
 #### - 학교  : 한국폴리텍대학 창원캠퍼스
@@ -19,15 +20,23 @@
 ### 자기소개 
 ---------------------------------------
 스마트팩토리학과 재학중인 22살 학생입니다.  
-홈카페, 게임, 운동, 홈텐딩, 독서를 주로 즐기고   
+홈카페, 게임, 운동, 홈텐딩, 독서를 취미로 하고있습니다!     
 
 ### 기술
 ---------------------------------------
 **고급 수준**
 * C언어
 * 래더 PLC 프로그램 설계
+* 납땜   
 
+**중급 수준**
++ 3D 모듈 설계
++ 전자 도면 설계    
 
+**초급 수준**
+- 용접    
+    
+    
 ### 학력 :mortar_board:
 ---------------------------------------
 2017~2019 울산에너지고등학교 (전기에너지과)  
@@ -51,24 +60,19 @@
 >산업안전산업기사(필기)  
 
 
-### 수업내용 및 프로젝트 ![GitHub Actions](https://img.shields.io/badge/github%20actions-%232671E5.svg?style=for-the-badge&logo=githubactions&logoColor=white):file_folder: 
+### 수업내용 및 프로젝트 ![GitHub Actions](https://img.shields.io/badge/github%20actions-%232671E5.svg?style=for-the-badge&logo=githubactions&logoColor=white)
 ---------------------------------------
 
-| DATE | 수업내용 | 과제 (,:ballot_box_with_check: , :x:) | 과제내용 |
+| DATE | 수업내용 | 과제 (:ballot_box_with_check: , :x:) | 과제내용 |
 |------|-------------------------|------|---------|
 |220906|vim사용법, github 사용법  | :ballot_box_with_check: | [HOW_TO_USE_VIM](https://github.com/minnyeob/vshome/blob/master/class220906.py)
-|220913|마카다운 사용법 | :ballot_box_with_check: | 마크다운으로 자기소개작성 |
-
-
-
-
-
-
-
-
-
-
-
+|220913|마카다운 사용법 | :ballot_box_with_check: | 마크다운으로 자기소개작성 |     
+           
+        
+                   
+                              
+                                         
+           
 
 
 #### 라이센스

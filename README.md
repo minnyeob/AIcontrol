@@ -1,4 +1,8 @@
 
+**깃허브 프로젝트 업로드, 커밋 수**  
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&theme=dark&show_icons=true)
+--------------------
+
 
 ## 민엽의 자기소개
 ===================================
@@ -16,7 +20,13 @@
 ---------------------------------------
 스마트팩토리학과 재학중인 22살 학생입니다.  
 홈카페, 게임, 운동, 홈텐딩, 독서를 주로 즐기고   
-특기는 PLC, 마이크로프로세서, 전기입니다!   
+
+### 기술
+---------------------------------------
+**고급 수준**
+* C언어
+* 래더 PLC 프로그램 설계
+
 
 ### 학력 :mortar_board:
 ---------------------------------------
@@ -41,21 +51,14 @@
 >산업안전산업기사(필기)  
 
 
-### 수업내용 및 프로젝트 :file_folder: 
+### 수업내용 및 프로젝트 ![GitHub Actions](https://img.shields.io/badge/github%20actions-%232671E5.svg?style=for-the-badge&logo=githubactions&logoColor=white):file_folder: 
 ---------------------------------------
-깃허브 프로젝트 업로드, 커밋 수     
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&theme=dark&show_icons=true)
---------------------
 
-#### 2022.09.06 수업내용
->VIM 사용방법
->GITHUB 사용방법  
->[HOW_TO_USE_VIM](https://github.com/minnyeob/vshome/blob/master/class220906.py)
---------------------
+| DATE | 수업내용 | 과제 (,:ballot_box_with_check: , :x:) | 과제내용 |
+|------|-------------------------|------|---------|
+|220906|vim사용법, github 사용법  | :ballot_box_with_check: | [HOW_TO_USE_VIM](https://github.com/minnyeob/vshome/blob/master/class220906.py)
+|220913|마카다운 사용법 | :ballot_box_with_check: | 마크다운으로 자기소개작성 |
 
-#### 2022.09.13 수업내용
->마크다운 사용법
---------------------
 
 
 

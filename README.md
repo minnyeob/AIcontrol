@@ -47,7 +47,7 @@
 2018 울산지방기능경기대회 전기기기직종 (은메달)  
 2019 울산지방기능경기대회 전기기기직종 (은메달)  
 2019 전국기능경기대회     전기기기직종 (장려상)  
->[전국기능경기대회 CODE](https://github.com/minnyeob/2019gwangjo/blob/main/text)
+>[전국기능경기대회 CODE](https://github.com/minnyeob/AIcontrol/blob/main/%EC%A0%84%EA%B5%AD%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8)
 
 ### 자격증 :clipboard:
 ---------------------------------------
@@ -65,8 +65,9 @@
 
 | DATE | 수업내용 | 과제 (:ballot_box_with_check: , :x:) | 과제내용 |
 |------|-------------------------|------|---------|
-|220906|vim사용법, github 사용법  | :ballot_box_with_check: | [HOW_TO_USE_VIM](https://github.com/minnyeob/vshome/blob/master/class220906.py)
-|220913|마크다운 사용법 | :ballot_box_with_check: | 마크다운으로 자기소개작성 |     
+|220906|vim사용법, github 사용법  | :ballot_box_with_check: | [HOW_TO_USE_VIM](https://github.com/minnyeob/AIcontrol/blob/main/220906%EA%B3%BC%EC%A0%9C.py)
+|220913|마크다운 사용법 | :ballot_box_with_check: | 마크다운으로 자기소개작성 |    
+|220920|[파이선 사용법](https://github.com/minnyeob/AIcontrol/blob/main/220920.py)| :ballot_box_with_check: | type conversion 마크다운 표 제작 |
            
         
                    

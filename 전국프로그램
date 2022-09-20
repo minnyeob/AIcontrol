@@ -1,0 +1,768 @@
+#include <io.h>
+
+#define DT1 PORTB.0
+#define DT2 PORTB.1
+#define DT3 PORTB.2
+#define L_CLK PORTB.3
+#define L_DATA PORTB.4
+#define IP1 PORTB.5
+#define IP2 PORTB.6
+#define IP3 PORTB.7
+
+#define SW PINC.0
+#define EN0 PINC.1
+#define EN1 PINC.2
+#define ENPB PINC.3
+
+#define SA PORTD.0
+#define SB PORTD.1
+#define SC PORTD.2
+#define SD PORTD.3
+#define CW PORTD.4
+#define CCW PORTD.5
+#define SEN1 PIND.6
+#define SEN2 PIND.7
+
+#define sbi(p,b) p|=(1<<b)
+#define cbi(p,b) p&=~(1<<b)
+#define tbi(p,b) ((p>>b)&1)
+
+enum{MSTOP=0, MCW, MCCW};
+
+int time_cnt;
+int fnds=0;
+int fnd[]={0,0,0,0};
+int led=0, lamp=0, led_lamp=0, bk_led_lamp=125;
+int matrix_cnt=0, led_matrix=0 , led_move=0, led_move2=0, led_move3=0, load_led=0, hand_led=0, unload_led=0;
+int B[]={0,0,0,0,0,0,0,0};
+int pb1=0, pb2=0, pb3=0, pb4=0, pb5=0, pb6=0, pb7=0, ensw=0;
+int mt=0, bk_mt=0, stop_cnt=0;
+int delay_cnt=0, sm_cnt=0, deg=0,step_cnt=0;
+int bk_en=0, en=0;
+int machine[]={0,0,0,0};
+int lamp_b=0;
+int blank_cnt=0;
+int emergency=0;
+int bk_step=0, bk_wash=0, bk_rinse=0, bk_dry=0;
+int bk_set_led=0;
+
+void D (int time){
+   int cek=time+time_cnt;
+   while(cek!=time_cnt);
+}
+
+void mstep (int dg){
+   int dg2;
+   deg=dg;
+   dg2=(dg>0) ? dg : -dg;
+   sm_cnt= dg2*20/36;
+}
+
+void setting(void){
+   int step=1;
+   int set_led=0;  
+   int wash_cnt=0;
+   int rinse_cnt=0;
+   int dry_cnt=0;
+   
+   while(step>0){
+      switch(step){
+         case 1:
+            sbi(lamp,0);
+            en=0;
+            step=2;   
+         break;    
+         case 2:
+            if(en>10){
+               set_led++;
+               en=0;
+            }       
+            if(en<-10){
+               set_led--;
+               en=0;
+            }     
+            if(emergency==1){     
+               led_move2=1<<(set_led-1);
+            }
+            else {
+               led_move=1<<(set_led-1);
+               led=machine[set_led];
+            }
+            if(ensw) step=3;
+         break;     
+         case 3:
+            if(pb3){
+               en=0;    
+               led=0;
+               sbi(lamp,1);
+               step=4;
+            }
+         break;       
+         case 4:
+            if(en>10){
+               if(wash_cnt<0x0f){
+                  wash_cnt<<=1;
+                  wash_cnt|=1;  
+               }                      
+               en=0;
+            }       
+            led|=wash_cnt;
+            if(ensw) step=5;
+         break;             
+         case 5:
+            if(pb3){
+               en=0;  
+               cbi(lamp,1);    
+               sbi(lamp,2);
+               step=6;
+            }
+         break;       
+         case 6:
+            if(en>10){ 
+               if(rinse_cnt<0x0f){
+                  rinse_cnt<<=1;
+                  rinse_cnt|=1;              
+               }               
+               en=0;
+            }       
+            led|=rinse_cnt<<4;
+            if(ensw)step=7;
+         break;           
+         case 7:  
+            if(pb3){
+               cbi(lamp,2);
+               sbi(lamp,3);
+               en=0;
+               step=8;
+            }
+         break;       
+         case 8:
+            if(en>10){
+               dry_cnt=1;
+               en=0;
+            }       
+            led|=dry_cnt<<8; 
+            if(ensw) step=9;
+         break;             
+         case 9:
+            if(pb1){     
+               if(emergecny==1){
+                  sbi(lamp,1);
+                  sbi(lamp,2);
+                  sbi(lamp,3);
+                  sbi(lamp,4);               
+                  cbi(load_led,set_led-1);
+                  sbi(hand_led,(set_led-1));      
+                  bk_set_led=set_led;
+                  led_move2=0;
+               }       
+               else{   
+                  cbi(lamp,3); 
+                  machine[set_led]=led; 
+                  led=0;
+               }             
+               set_led=0;
+               cbi(lamp,0);
+               led_move=0;
+               en=0;
+               step=0;
+               while(pb1);
+            }
+         break;    
+      }
+   }
+}
+
+void loading (void){
+   int step=1;      
+   int g_stack;
+   while(step>0){   
+      switch(step){
+         case 1:  
+            sbi(lamp,0);
+            fnd[1]=1;
+            en=0;
+            step=2;
+         break;    
+         case 2:
+            if(en>10){
+               fnd[1]++;
+               en=0;
+            }       
+            if(en<-10){
+               fnd[1]--;
+               en=0;
+            }         
+            led=machine[fnd[1]-1];
+            led_move=1<<(fnd[1]-1);
+            if(pb2) step=10;
+            if(pb6){    
+               g_stack=fnd[1];
+               fnd[1]=0;      
+               led_move=0;
+               D(1000);
+               mt=MCW;
+               D(500);
+               step=3;
+            }
+         break;            
+         case 3:  
+            if(SEN1){
+               fnd[1]++;
+               led_move=1<<(fnd[1]-1);
+               if(fnd[1]==g_stack){
+                  fnd[0]++;
+                  sbi(load_led,(fnd[1]-1));
+                  D(150);
+                  mt=MSTOP;                
+                  D(1000);
+                  mt=MCCW;
+                  D(500);
+                  step=4;
+               }         
+               else D(500);
+            }   
+         break; 
+         case 4:
+            if(SEN1){
+               fnd[1]--;
+               led_move=1<<(fnd[1]-1);
+               if(fnd[1]==0){
+                  led=0;
+                  cbi(lamp,0);
+                  en=0;
+                  step=0;    
+                  D(150);
+                  mt=MSTOP;
+               }  
+               else D(500);
+            }
+         break;  
+         
+         case 10:
+            en=0;
+            led_move=0;
+            fnd[3]=fnd[1];
+            fnd[1]=0;
+            led=0;
+            led_move=0;
+            step=11;   
+         break;     
+         case 11: 
+            if(en>10){
+               fnd[3]++;
+               en=0;
+            }       
+            if(en<-10){
+               fnd[3]--;
+               en=0;
+            }      
+            led_move3=1<<(fnd[3]-1);
+            if(pb6){
+               en=0;    
+               g_stack=fnd[3];
+               fnd[3]=0;      
+               led_move3=0;
+               D(1000);
+               mt=MCW;
+               D(500);
+               step=12;
+            }          
+            break;     
+         case 12: 
+            if(SEN1){
+               fnd[3]++;
+               led_move3=1<<(fnd[3]-1);
+               if(fnd[3]==g_stack){
+                  fnd[2]--;
+                  cbi(unload_led,(fnd[3]-1));
+                  D(150);
+                  mt=MSTOP;            
+                  D(1000);
+                  mt=MCCW;
+                  D(500);
+                  step=13;
+               }      
+               else D(500);
+            }
+            break;        
+         case 13: 
+            if(SEN1){
+               fnd[3]--;
+               led_move3=1<<(fnd[3]-1);
+               if(fnd[3]==0){
+                  fnd[3]=0;
+                  cbi(lamp,0);
+                  D(150);
+                  mt=MSTOP;
+                  step=0;
+               }     
+               else D(500);
+            }
+            break;
+      }
+   }
+}
+
+void waterin (void){
+   D(1000);    
+   mt=MCW;  
+   D(500);
+   
+   while(SEN1==0);
+   D(150);
+   mt=MSTOP;
+}
+           
+void waterout (void){
+   D(1000);    
+   mt=MCCW; 
+   D(500);
+   
+   while(SEN1==0);
+   D(150);
+   mt=MSTOP;
+}
+
+void automation(void){
+   int step=1;      
+   int rinse=0;
+   int dry=0;
+   int wash=0;
+   while(step>0){
+      switch(step){
+         case 1:
+            sbi(lamp,4);
+            en=0;
+            step=2;
+         break;    
+         case 2:
+            if(pb6) step=3;
+         break;            
+         case 3:
+            D(1000);
+            mt=MCW;
+            D(500);
+            step=4;   
+         break;    
+         case 4:  
+            if(SEN1){
+               fnd[1]++;
+               led_move=1<<(fnd[1]-1);
+               led=machine[fnd[1]-1];
+               if(fnd[1]==5){
+                  fnd[1]=0;
+                  led=0;     
+                  cbi(lamp,4);
+                  D(150);
+                  mt=MSTOP;
+                  led_move=0;
+                  step=0;
+               }
+               if(tbi(load_led,(fnd[1]-1))){
+                  
+                  wash=tbi(led,0)+tbi(led,1)+tbi(led,2)+tbi(led,3);
+                  rinse=tbi(led,4)+tbi(led,5)+tbi(led,6)+tbi(led,7);
+                  dry=tbi(led,8);           
+                  
+                  if(wash)  sbi(lamp,1);
+                  if(rinse) sbi(lamp,2);
+                  if(dry)   sbi(lamp,3);
+                                                
+                  sbi(lamp_b,1);                
+                  
+                  D(150);
+                  mt=MSTOP;
+                  
+                  D(1000);
+                  mt=MCW;
+                  D(500);
+                  step=5;
+               }       
+               else D(500);
+            }   
+         break;    
+         case 5:
+            if(wash){
+               waterin();
+               
+               D(1000);
+               mstep(300);
+               D(500);
+               
+               while(SEN2==0); 
+               
+               D(30);
+               mstep(0);
+               
+               cbi(led,wash-1);
+               wash--;       
+               if(wash==0){
+                  cbi(lamp_b,1);
+                  cbi(lamp,1);
+                  sbi(lamp_b,2);
+               }          
+               
+               waterout();     
+               if(emergency==1){ 
+                  bk_wash=wash;
+                  bk_rinse=rinse;
+                  bk_dry=dry;
+                  bk_step=step;
+                  
+                  cbi(lamp,0);
+                  cbi(lamp,1);
+                  cbi(lamp,2);
+                  cbi(lamp,3);
+                  cbi(lamp,4);
+                   
+                  cbi(lamp_b,1);
+                  step=0;
+               }
+            }             
+            else {
+               step=6;
+            }
+         break;
+         case 6:
+            if(rinse){
+               waterin();
+               
+               D(1000);
+               mstep(300);
+               D(500);
+               
+               while(SEN2==0);   
+                
+               D(30);
+               mstep(0);
+               
+               cbi(led,rinse-1+4);
+               rinse--;       
+               if(rinse==0){
+                  cbi(lamp_b,2);
+                  cbi(lamp,2);
+                  sbi(lamp_b,3);
+               }          
+               
+               waterout();    
+               if(emergency==1){
+                  cbi(lamp,0);
+                  cbi(lamp,1);
+                  cbi(lamp,2);
+                  cbi(lamp,3);
+                  cbi(lamp,4);
+                   
+                  cbi(lamp_b,2);
+                  step=0;
+               }
+            }             
+            else {
+               step=7;
+            }
+         break;     
+         case 7:
+            if(dry){   
+               
+               D(1000);
+               mstep(300);  
+               D(500);
+               
+               while(SEN2==0);    
+                
+               D(30);
+               mstep(0);
+               
+               cbi(led,dry-1+8);
+               dry--;
+               if(dry==0){
+                  cbi(lamp_b,3);
+                  cbi(lamp,3);
+               }
+            }               
+            else step=8;
+         break;         
+         case 8:
+            fnd[0]--;
+            fnd[2]++;
+            led=0;
+            cbi(load_led,fnd[1]-1);
+            sbi(unload_led,fnd[1]-1);
+            step=3;
+         break;
+      }
+   }
+}
+
+void handmode (void){
+   int step=1;
+   int wash=0;
+   int rinse=0;
+   int dry=0;
+   
+   while(step>0){
+      switch(step){
+         case 1:
+            sbi(lamp_b,1);
+            sbi(lamp_b,4);   
+            
+            wash=tbi(led,0)+tbi(led,1)+tbi(led,2)+tbi(led,3);
+            rinse=tbi(led,4)+tbi(led,5)+tbi(led,6)+tbi(led,7);
+            dry=tbi(led,8);
+            
+            en=0;
+            step=2;
+         break;    
+         case 2: 
+            if(wash){
+               waterin();
+               
+               D(1000);
+               mstep(45);
+               D(500);
+               
+               while(SEN2);
+               
+               D(30);
+               mstep(0);
+               
+               cbi(led,wash-1);
+               wash--;
+               if(wash==0){
+                  cbi(lamp_b,1);
+                  cbi(lamp,1);
+                  sbi(lamp_b,2);
+               }   
+               
+               waterout();
+            }             
+            else step=3;
+         break;
+         case 3: 
+            if(rinse){
+               waterin();
+               
+               D(1000);
+               mstep(45);
+               D(500);
+               
+               while(SEN2);
+               
+               D(30);
+               mstep(0);
+               
+               cbi(led,rinse-1+4);
+               rinse--;
+               if(rinse==0){
+                  cbi(lamp_b,2);
+                  cbi(lamp,2);
+                  sbi(lamp_b,3);
+               }   
+               
+               waterout();
+            }             
+            else step=4;
+         break;        
+         case 4: 
+            if(dry){
+               D(1000);
+               mstep(45);
+               D(500);
+               
+               while(SEN2);
+               
+               D(30);
+               mstep(0);
+               
+               cbi(led,dry-1);
+               dry--;
+               if(dry==0){
+                  cbi(lamp_b,3);
+                  cbi(lamp,3);
+               }   
+            }             
+            else step=5;
+         break;        
+         case 5:
+            cbi(lamp_b,4);
+            cbi(lamp,4);
+            fnd[0]--;
+            fnd[2]++;
+            cbi(hand_led,bk_set_led-1);  
+            sbi(unload_led,bk_set_led-1);
+            bk_set_led=0;
+            step=0;
+         break;
+      }
+   }
+}
+
+void main (void){
+   DDRB=0xff;
+   DDRC=0x00;
+   DDRD=0x3f;
+   
+   OCR1A=125,TCCR1B=0x0b, TIMSK=0x11, SREG=0x80, ADCSRA=0xc7, ADMUX=0;
+                      
+   load_led=0x06;  
+   fnd[0]=2;
+   
+   machine[0]=0x0111; 
+   machine[1]=0x0131;
+   machine[2]=0x0113;
+   machine[3]=0x0133;
+   
+   while(1){
+      if(pb1){
+         setting();
+      }   
+      
+      if(pb2){      
+         while(pb2);
+         loading();
+      }
+        
+      if(pb4){
+         automation();
+      }      
+      if(emergecny==1){
+         if(pb6) handmode();
+      }
+       
+      if(pb5) sbi(lamp,4);
+      
+      
+   }
+}  
+
+interrupt[TIM1_COMPA]void timer1 (void){
+   
+   int f;
+   int i;
+   time_cnt++;    
+   
+   if(pb7) emergency=1;
+                
+   //fnd
+   if(1){    
+      IP3=1;                
+      if(++fnds>3) fnds=0;
+      f=(fnd[fnds]<<3)|fnds;
+      for(i=6;i>=0;i--) IP1=(f>>i)&1, IP2=1, IP2=0;
+      IP3=0;
+   }  
+   
+   //led
+   if(1){   
+      /////////Á¡¸ê///////////
+      if(lamp_b){
+         if(++blank_cnt>1000) blank_cnt=0;
+         if(blank_cnt<500) lamp|=(lamp,lamp_b);
+         else              lamp&=~(lamp,lamp_b);
+      }                   
+      ///////////////////////////
+      led_lamp=(lamp<<10)|led;
+      f=led_lamp;
+      if(bk_led_lamp!=led_lamp){
+         bk_led_lamp=led_lamp;
+         for(i=14;i>=0;i--) L_DATA=(f>>i)&1, L_CLK=1, L_CLK=0;
+      }
+   }                                           
+                                                     
+   //matrix
+   if(1){      
+      led_matrix=load_led|led_move|(led_move2<<4)|(hand_led<<4)|(led_move3<<8)|(unload_led<<8);
+      
+      DT3=1;                                 
+      f=1<<matrix_cnt;
+      for(i=2;i>=0;i--) DT1=(f>>i)&1, DT2=1,DT2=0;
+      
+      f=(led_matrix>>(matrix_cnt*4))&0x0f;
+      for(i=3;i>=0;i--) DT1=!((f>>i)&1), DT2=1,DT2=0; 
+      if(++matrix_cnt>2) matrix_cnt=0;  
+      DT3=0;
+   }                           
+   
+   
+   //sw
+   if(1){          
+      if(ADCSRA&0x10){
+         B[0]= (ADCW<300)               ? ++B[0] : 0;
+         B[1]=((ADCW>400)&&(ADCW<500))  ? ++B[1] : 0;
+         B[2]=((ADCW>500)&&(ADCW<600))  ? ++B[2] : 0;
+         B[3]=((ADCW>600)&&(ADCW<700))  ? ++B[3] : 0;
+         B[4]=((ADCW>700)&&(ADCW<800))  ? ++B[4] : 0;
+         B[5]=((ADCW>800)&&(ADCW<900))  ? ++B[5] : 0;
+         B[6]=((ADCW>900)&&(ADCW<1000)) ? ++B[6] : 0;
+         B[7]=(ENPB==0)                 ? ++B[7] : 0;      
+         
+         pb1=(B[0]>2);
+         pb2=(B[1]>2);
+         pb3=(B[2]>2);
+         pb4=(B[3]>2);
+         pb5=(B[4]>2);
+         pb6=(B[5]>2);
+         pb7=(B[6]>2);
+         ensw=(B[7]>20);
+      ADCSRA|=0x40;      
+      }
+   }          
+   
+   //encoder
+   if(1){
+      if(bk_en!=EN0) (EN0==EN1) ? ++en : --en;
+      bk_en=EN0;
+   }          
+   
+   //mt
+   if(1){
+      if(mt==MCW){
+         CW=1;
+         CCW=0;
+         bk_mt=mt;
+      }           
+      else if(mt==MCCW){
+         CW=0;
+         CCW=1;
+         bk_mt=mt;
+      }
+      else {
+         if(++stop_cnt>150){
+            mt=0;
+            CW=0;
+            CCW=0;
+            bk_mt=0;
+         }          
+         else if(bk_mt==MCW){
+            CW=0;
+            CCW=1;
+         }          
+         else if(bk_mt==MCCW){
+            CW=1;
+            CCW=0;
+         }
+      }
+   }                
+   
+   //step
+   if(1){
+      if(++delay_cnt>5){
+         if(sm_cnt>0){
+            if(deg>0){
+               if(++step_cnt>3) step_cnt=0;
+            }                              
+            else{
+               if(--step_cnt<0) step_cnt=3;
+            }                           
+            
+            if(step_cnt==0)      SA=1, SB=0, SC=0, SD=0;
+            else if(step_cnt==1) SA=0, SB=1, SC=0, SD=0;
+            else if(step_cnt==2) SA=0, SB=0, SC=1, SD=0;
+            else                 SA=0, SB=0, SC=0, SD=1;
+         }                                  
+         else SA=SB=SC=SD=0;
+         delay_cnt=0;
+      }
+   }
+
+}        

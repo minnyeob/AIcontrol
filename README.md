@@ -64,10 +64,11 @@
 ---------------------------------------
 
 | DATE | 수업내용 | 과제 (:ballot_box_with_check: , :x:) | 과제내용 |
-|------|-------------------------|------|---------|
+|:------:|:-------------------------:|:------:|:---------:|
 |220906|vim사용법, github 사용법  | :ballot_box_with_check: | [HOW_TO_USE_VIM](https://github.com/minnyeob/AIcontrol/blob/main/220906%EA%B3%BC%EC%A0%9C.py)
 |220913|마크다운 사용법 | :ballot_box_with_check: | 마크다운으로 자기소개작성 |    
-|220920|[파이선 사용법](https://github.com/minnyeob/AIcontrol/blob/main/220920.py)| :ballot_box_with_check: | [type conversion 마크다운 표 제작](https://github.com/minnyeob/220920) |
+|220920|[파이선 사용법1](https://github.com/minnyeob/AIcontrol/blob/main/220920.py)| :ballot_box_with_check: | [type conversion 마크다운 표 제작](https://github.com/minnyeob/220920) |
+|220927|[파이선 사용법2](https://github.com/minnyeob/AIcontrol/blob/main/220927.py)| :x: | |
 
                    
                               

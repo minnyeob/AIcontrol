@@ -71,6 +71,7 @@
 |220920|[파이선 사용법1](https://github.com/minnyeob/AIcontrol/blob/main/src/220920.py)| :ballot_box_with_check: | [type conversion 마크다운 표 제작](https://github.com/minnyeob/220920) |
 |220927|[파이선 사용법2](https://github.com/minnyeob/AIcontrol/blob/main/src/220927.py)| :x: | |
 |221004|[파이선 사용법3](https://github.com/minnyeob/AIcontrol/blob/main/src/function.py)| :x: | |
+|221011|[파이선 사용법4](https://github.com/minnyeob/AIcontrol/blob/main/src/221011.py)| :ballot_box_with_check: | 윈도우 기본구성 작성(~25) |
                    
                               
                                          

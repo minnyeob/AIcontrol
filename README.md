@@ -72,7 +72,7 @@
 |220927|[파이선 사용법2](https://github.com/minnyeob/AIcontrol/blob/main/src/220927.py)| :x: | |
 |221004|[파이선 사용법3](https://github.com/minnyeob/AIcontrol/blob/main/src/function.py)| :x: | |
 |221011|[파이선 사용법4](https://github.com/minnyeob/AIcontrol/blob/main/src/221011.py)| :ballot_box_with_check: | 윈도우 기본구성 작성(~25) |
-|221004|조별과제 주제선정| :ballot_box_with_check: | [조별과제 주제 PPT 작성](https://github.com/minnyeob/AIcontrol/blob/main/(221026_3)%20AI%20%EA%B3%BC%EC%A0%9C%EC%84%A0%EC%A0%95%20PPT.pptx) |
+|221004|조별과제 주제선정| :ballot_box_with_check: | [조별과제 주제 PPT 작성](https://github.com/minnyeob/AIcontrol/blob/main/AI%20%EC%A1%B0%EB%B3%84%EA%B3%BC%EC%A0%9C/(221026_3)%20AI%20%EA%B3%BC%EC%A0%9C%EC%84%A0%EC%A0%95%20PPT.pptx) |
                    
                               
                                          
